@@ -1,0 +1,506 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>ubuntu java 开发环境搭建 | Teclan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Teclan">
+    
+
+    
+    <meta name="description" content="ubuntu16.04 使用 apt 代替 apt-get
+
+Git安装1sudo apt-get install git
+生成key设置你的邮箱信息123$ ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;# Creates a new ssh key, using the provided email as a labelGenera">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu java 开发环境搭建">
+<meta property="og:url" content="https://teclan.github.io/2016/07/12/ubuntu-java-开发环境搭建/index.html">
+<meta property="og:site_name" content="Teclan">
+<meta property="og:description" content="ubuntu16.04 使用 apt 代替 apt-get
+
+Git安装1sudo apt-get install git
+生成key设置你的邮箱信息123$ ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;# Creates a new ssh key, using the provided email as a labelGenera">
+<meta property="og:updated_time" content="2016-07-15T10:47:01.622Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ubuntu java 开发环境搭建">
+<meta name="twitter:description" content="ubuntu16.04 使用 apt 代替 apt-get
+
+Git安装1sudo apt-get install git
+生成key设置你的邮箱信息123$ ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;# Creates a new ssh key, using the provided email as a labelGenera">
+<meta name="twitter:creator" content="@tbj621">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Teclan">Teclan</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:teclan.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/07/12/ubuntu-java-开发环境搭建/" title="ubuntu java 开发环境搭建" itemprop="url">ubuntu java 开发环境搭建</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Teclan" target="_blank" itemprop="author">Teclan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-07-12T02:20:13.000Z" itemprop="datePublished"> 发表于 2016-07-12</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git"><span class="toc-number">1.</span> <span class="toc-text">Git</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成key"><span class="toc-number">1.2.</span> <span class="toc-text">生成key</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ssh"><span class="toc-number">2.</span> <span class="toc-text">ssh</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-1"><span class="toc-number">2.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#确认sshserver是否启动了"><span class="toc-number">2.2.</span> <span class="toc-text">确认sshserver是否启动了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置使登录时间更短"><span class="toc-number">2.3.</span> <span class="toc-text">配置使登录时间更短</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#maven"><span class="toc-number">3.</span> <span class="toc-text">maven</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载"><span class="toc-number">3.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">3.2.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jdk"><span class="toc-number">4.</span> <span class="toc-text">jdk</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载-1"><span class="toc-number">4.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-1"><span class="toc-number">4.2.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#eclipse"><span class="toc-number">5.</span> <span class="toc-text">eclipse</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载-2"><span class="toc-number">5.1.</span> <span class="toc-text">下载</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>ubuntu16.04 使用 apt 代替 apt-get</p>
+</blockquote>
+<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install git</div></pre></td></tr></table></figure>
+<h2 id="生成key"><a href="#生成key" class="headerlink" title="生成key"></a>生成key</h2><p>设置你的邮箱信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -b 4096 -C <span class="string">"your_email@example.com"</span></div><div class="line"><span class="comment"># Creates a new ssh key, using the provided email as a label</span></div><div class="line">Generating public/private rsa key pair.</div></pre></td></tr></table></figure></p>
+<p>设置你的配置目录，默认为 ~/.ssh/<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ Enter a file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/Users/you/.ssh/id_rsa): [Press enter]</div></pre></td></tr></table></figure></p>
+<p>设置密码，默认为空，一直按回车即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ Enter passphrase (empty <span class="keyword">for</span> no passphrase): [Type a passphrase]</div><div class="line">$ Enter same passphrase again: [Type passphrase again]</div></pre></td></tr></table></figure></p>
+<h1 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h1><h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><p>一般成功装了git之后，ssh也已经安装，如果没有安装，则需要手动安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install openssh-server</div></pre></td></tr></table></figure></p>
+<h2 id="确认sshserver是否启动了"><a href="#确认sshserver是否启动了" class="headerlink" title="确认sshserver是否启动了"></a>确认sshserver是否启动了</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps <span class="_">-e</span> | grep ssh</div></pre></td></tr></table></figure>
+<p>如果只有ssh-agent那ssh-server还没有启动，需要/etc/init.d/ssh start，如果看到sshd那说明ssh-server已经启动了<br>ssh-server配置文件位于/ etc/ssh/sshd_config，在这里可以定义SSH的服务端口，默认端口是22，你可以自己定义成其他端口号，如222。然后重启SSH服务：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /etc/init.d/ssh resart</div></pre></td></tr></table></figure></p>
+<h2 id="配置使登录时间更短"><a href="#配置使登录时间更短" class="headerlink" title="配置使登录时间更短"></a>配置使登录时间更短</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vim /etc/ssh/sshd_config</div></pre></td></tr></table></figure>
+<p>找到 GSSAPI options 这一节，将下面两行注释掉：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#GSSAPIAuthentication yes</span></div><div class="line"><span class="comment">#GSSAPIDelegateCredentials no</span></div></pre></td></tr></table></figure></p>
+<p>然后重新启动 ssh 服务即可：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /etc/init.d/ssh resart</div></pre></td></tr></table></figure></p>
+<h1 id="maven"><a href="#maven" class="headerlink" title="maven"></a>maven</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a href="http://maven.apache.org/download.cgi" target="_blank" rel="external">点此下载</a></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在置文件中添加（形如）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">M2=<span class="string">"/path/to/maven"</span>   </div><div class="line">PATH=<span class="string">"<span class="variable">$M2</span>/bin/:...."</span></div></pre></td></tr></table></figure></p>
+<p>使配置生效：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> .zshrc <span class="comment">#具体配置文件根据自己情况指定</span></div></pre></td></tr></table></figure></p>
+<h1 id="jdk"><a href="#jdk" class="headerlink" title="jdk"></a>jdk</h1><h2 id="下载-1"><a href="#下载-1" class="headerlink" title="下载"></a>下载</h2><p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">点此下载</a></p>
+<h2 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h2><p>解压后拷至某个目录后，在配置文件添加（形如）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">JAVA_HOME=<span class="string">"/path/to/jdk"</span></div><div class="line">PATH=<span class="string">"<span class="variable">$JAVA_HOME</span>/bin:..."</span></div></pre></td></tr></table></figure></p>
+<p>修改默认jdk<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo update-alternatives --install /usr/bin/java java /path/to/jdk/bin/java 300</div><div class="line">sudo update-alternatives --install /usr/bin/javac javac /path/to/jdk/bin/javac 300</div><div class="line">sudo update-alternatives --config java</div></pre></td></tr></table></figure></p>
+<h1 id="eclipse"><a href="#eclipse" class="headerlink" title="eclipse"></a>eclipse</h1><h2 id="下载-2"><a href="#下载-2" class="headerlink" title="下载"></a>下载</h2><p><a href="http://www.eclipse.org/" target="_blank" rel="external">点此下载</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/ubuntu/">ubuntu</a><a href="/tags/ssh/">ssh</a><a href="/tags/java/">java</a><a href="/tags/git/">git</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/07/15/常见数据库操作SQL/" title="常见数据库操作SQL">
+  <strong>上一篇：</strong><br/>
+  <span>
+  常见数据库操作SQL</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/07/09/linux-常见命令/"  title="linux 常见命令">
+ <strong>下一篇：</strong><br/> 
+ <span>linux 常见命令
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git"><span class="toc-number">1.</span> <span class="toc-text">Git</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成key"><span class="toc-number">1.2.</span> <span class="toc-text">生成key</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ssh"><span class="toc-number">2.</span> <span class="toc-text">ssh</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-1"><span class="toc-number">2.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#确认sshserver是否启动了"><span class="toc-number">2.2.</span> <span class="toc-text">确认sshserver是否启动了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置使登录时间更短"><span class="toc-number">2.3.</span> <span class="toc-text">配置使登录时间更短</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#maven"><span class="toc-number">3.</span> <span class="toc-text">maven</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载"><span class="toc-number">3.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">3.2.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jdk"><span class="toc-number">4.</span> <span class="toc-text">jdk</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载-1"><span class="toc-number">4.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-1"><span class="toc-number">4.2.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#eclipse"><span class="toc-number">5.</span> <span class="toc-text">eclipse</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载-2"><span class="toc-number">5.1.</span> <span class="toc-text">下载</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="teclan" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Github-pages/" title="Github-pages">Github-pages<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ubuntu/" title="ubuntu">ubuntu<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ssh/" title="ssh">ssh<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Maven/" title="Maven">Maven<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/打包/" title="打包">打包<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/maven/" title="maven">maven<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/eclipse/" title="eclipse">eclipse<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Jekyll/" title="Jekyll">Jekyll<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Oracle/" title="Oracle">Oracle<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/达梦/" title="达梦">达梦<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sqlserver2k/" title="sqlserver2k">sqlserver2k<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sqlserver2k/" title="sqlserver2k+">sqlserver2k+<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB2/" title="DB2">DB2<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/kingbase/" title="kingbase">kingbase<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 天雨虽宽，不润无根之草；佛法虽广，不渡无缘至人。 <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/teclan" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/tbj621" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/tbj621" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/teclan" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:tbj621k@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Teclan">Teclan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

@@ -1,0 +1,499 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>maven多模块 | Teclan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Teclan">
+    
+
+    
+    <meta name="description" content="Maven 多模块项目示例
+新建 Maven 父项目 根据需要删除目录下面的src/,只保留pox.xml,将 1&amp;lt;packaging&amp;gt;jar&amp;lt;/packaging&amp;gt;
+ 改成 1&amp;lt;packaging&amp;gt;pom&amp;lt;/packaging&amp;gt;
+ 设置父项目版本和编码，子项目版本一般跟父项目一致，故使用父项目的配置即可 1234&amp;lt;properties&amp;gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="maven多模块">
+<meta property="og:url" content="https://teclan.github.io/2016/07/07/maven多模块/index.html">
+<meta property="og:site_name" content="Teclan">
+<meta property="og:description" content="Maven 多模块项目示例
+新建 Maven 父项目 根据需要删除目录下面的src/,只保留pox.xml,将 1&amp;lt;packaging&amp;gt;jar&amp;lt;/packaging&amp;gt;
+ 改成 1&amp;lt;packaging&amp;gt;pom&amp;lt;/packaging&amp;gt;
+ 设置父项目版本和编码，子项目版本一般跟父项目一致，故使用父项目的配置即可 1234&amp;lt;properties&amp;gt;">
+<meta property="og:image" content="https://img.alicdn.com/imgextra/i4/1095268166/TB2q4wWspXXXXbIXXXXXXXXXXXX_!!1095268166.png">
+<meta property="og:updated_time" content="2016-07-08T02:13:59.773Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="maven多模块">
+<meta name="twitter:description" content="Maven 多模块项目示例
+新建 Maven 父项目 根据需要删除目录下面的src/,只保留pox.xml,将 1&amp;lt;packaging&amp;gt;jar&amp;lt;/packaging&amp;gt;
+ 改成 1&amp;lt;packaging&amp;gt;pom&amp;lt;/packaging&amp;gt;
+ 设置父项目版本和编码，子项目版本一般跟父项目一致，故使用父项目的配置即可 1234&amp;lt;properties&amp;gt;">
+<meta name="twitter:image" content="https://img.alicdn.com/imgextra/i4/1095268166/TB2q4wWspXXXXbIXXXXXXXXXXXX_!!1095268166.png">
+<meta name="twitter:creator" content="@tbj621">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Teclan">Teclan</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:teclan.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/07/07/maven多模块/" title="maven多模块" itemprop="url">maven多模块</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Teclan" target="_blank" itemprop="author">Teclan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-07-07T10:03:12.000Z" itemprop="datePublished"> 发表于 2016-07-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Maven-多模块"><span class="toc-number">1.</span> <span class="toc-text">Maven 多模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#新建-Maven-父项目"><span class="toc-number">1.1.</span> <span class="toc-text">新建 Maven 父项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建子项目-Module"><span class="toc-number">1.2.</span> <span class="toc-text">新建子项目(Module)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#依赖"><span class="toc-number">2.</span> <span class="toc-text">依赖</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#测试"><span class="toc-number">3.</span> <span class="toc-text">测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#打包"><span class="toc-number">4.</span> <span class="toc-text">打包</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="Maven-多模块"><a href="#Maven-多模块" class="headerlink" title="Maven 多模块"></a>Maven 多模块</h1><p><a href="https://github.com/teclan/teclan-parent" target="_blank" rel="external">项目示例</a></p>
+<h2 id="新建-Maven-父项目"><a href="#新建-Maven-父项目" class="headerlink" title="新建 Maven 父项目"></a>新建 Maven 父项目</h2><p> 根据需要删除目录下面的src/,只保留pox.xml,将<br> <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;packaging&gt;jar&lt;/packaging&gt;</div></pre></td></tr></table></figure></p>
+<p> 改成<br> <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;packaging&gt;pom&lt;/packaging&gt;</div></pre></td></tr></table></figure></p>
+<p> 设置父项目版本和编码，子项目版本一般跟父项目一致，故使用父项目的配置即可<br> <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;properties&gt;</div><div class="line">	   &lt;teclan.version&gt;0.1.0-SNAPSHOT&lt;/teclan.version&gt;</div><div class="line">    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</div><div class="line">&lt;/properties&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="新建子项目-Module"><a href="#新建子项目-Module" class="headerlink" title="新建子项目(Module)"></a>新建子项目(Module)</h2><p> 配置同普通maven项目，例如创建示例Module项目 model-Demo1 和 model-Demo2,<br> 则在父项目的pom.xml中可看到增加如下内容<br> <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;modules&gt;</div><div class="line">   &lt;module&gt;module-demo1&lt;/module&gt;</div><div class="line"> 	&lt;module&gt;module-demo2&lt;/module&gt;</div><div class="line"> &lt;/modules&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h1><p>子项目用到的共同依赖可以放到父项目中，如果子项目与父项目的依赖组件相同，但是版本号不同，<br>那么子项目会调用子项目的依赖组件</p>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>在父项目下执行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mvn <span class="built_in">test</span></div></pre></td></tr></table></figure></p>
+<p>会执行所以子项目的单元测试，例如示例项目中：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ path/to/project  mvn <span class="built_in">test</span></div></pre></td></tr></table></figure></p>
+<p>结果如下：<br><img src="https://img.alicdn.com/imgextra/i4/1095268166/TB2q4wWspXXXXbIXXXXXXXXXXXX_!!1095268166.png" alt=""></p>
+<h1 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ path/to/project mvn package -Dmaven.test.skip=True</div></pre></td></tr></table></figure>
+<p>每个子项目单独打出jar,其他配置待后续更新…</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/maven/">maven</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/07/09/linux-常见命令/" title="linux 常见命令">
+  <strong>上一篇：</strong><br/>
+  <span>
+  linux 常见命令</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/07/06/ssh配置/"  title="ssh配置">
+ <strong>下一篇：</strong><br/> 
+ <span>ssh配置
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Maven-多模块"><span class="toc-number">1.</span> <span class="toc-text">Maven 多模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#新建-Maven-父项目"><span class="toc-number">1.1.</span> <span class="toc-text">新建 Maven 父项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建子项目-Module"><span class="toc-number">1.2.</span> <span class="toc-text">新建子项目(Module)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#依赖"><span class="toc-number">2.</span> <span class="toc-text">依赖</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#测试"><span class="toc-number">3.</span> <span class="toc-text">测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#打包"><span class="toc-number">4.</span> <span class="toc-text">打包</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="teclan" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Github-pages/" title="Github-pages">Github-pages<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ubuntu/" title="ubuntu">ubuntu<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ssh/" title="ssh">ssh<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Maven/" title="Maven">Maven<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/打包/" title="打包">打包<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/maven/" title="maven">maven<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/eclipse/" title="eclipse">eclipse<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Jekyll/" title="Jekyll">Jekyll<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Oracle/" title="Oracle">Oracle<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/达梦/" title="达梦">达梦<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sqlserver2k/" title="sqlserver2k">sqlserver2k<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sqlserver2k/" title="sqlserver2k+">sqlserver2k+<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB2/" title="DB2">DB2<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/kingbase/" title="kingbase">kingbase<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 天雨虽宽，不润无根之草；佛法虽广，不渡无缘至人。 <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/teclan" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/tbj621" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/tbj621" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/teclan" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:tbj621k@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Teclan">Teclan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
