@@ -96,8 +96,8 @@
     <h1 itemprop="name">mysql 中文乱码问题</h1>
     
      
-           <p itemprop="description" >错误详情1ERROR 1366 (HY000): Incorrect string value:xxx
-解决方案重建数据库12create database db_name;//此时使用的是默认编码，插入中文会乱码alter database db_name default ch</p>
+           <p itemprop="description" >JDBC操作数据库中文乱码这种情况在跨平台数据操作出现的比较，一般常用的驱动和URL如下：12DRIVER：com.mysql.jdbc.DriverURL ： jdbc:mysql://%s:%d/%s
+如果出现乱码，请在URL中指定连接的操作编码，如下:12DRIVER：co</p>
         
     
     <time datetime="2016-08-29T08:36:46.000Z" itemprop="datePublished">2016-08-29</time>

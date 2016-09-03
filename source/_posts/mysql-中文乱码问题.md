@@ -4,11 +4,27 @@ date: 2016-08-29 16:36:46
 tags: [mysql,编码]
 ---
 
-### 错误详情
+
+### JDBC操作数据库中文乱码
+这种情况在跨平台数据操作出现的比较，一般常用的驱动和URL如下：
+```
+DRIVER：com.mysql.jdbc.Driver
+URL ： jdbc:mysql://%s:%d/%s
+```
+如果出现乱码，请在URL中指定连接的操作编码，如下:
+```
+DRIVER：com.mysql.jdbc.Driver
+URL ： jdbc:mysql://%s:%d/%s?useUnicode=true&characterEncoding=UTF-8
+```
+
+
+### 在数据表中插入中文数据异常
+错误详情
 ```
 ERROR 1366 (HY000): Incorrect string value:xxx
 ```
-### 解决方案
+一般这种情况出现在直接使用控制台操作数据库，一般的方式是重建数据库或建表时指定编码，当然，如果能在安装数据库的时候就把相关参数
+配置正确，那是最好的
 #### 重建数据库
 ```
 create database db_name;//此时使用的是默认编码，插入中文会乱码
@@ -22,7 +38,7 @@ create table table_name(
 )default character set gb2312 default collate gb2312_chinese_ci;
 ```
 
-#### 其他资料
+#### 其他参考资料
 ```
 # 查看MySQL能够支持的多种字符集：
 show character set;
