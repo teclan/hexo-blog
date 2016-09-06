@@ -38,7 +38,7 @@ create table table_name(
 )default character set gb2312 default collate gb2312_chinese_ci;
 ```
 
-#### 其他参考资料
+#### 其他参资料
 ```
 # 查看MySQL能够支持的多种字符集：
 show character set;

@@ -153,7 +153,25 @@ select table_name, count_rows(table_name)  nrows from user_tables order by nrows
 
 
 # 达梦数据库
-  达梦数据库参考Oracle
+  除以下特别指出外，其余参考Oracle
+
+  > sysobjects.object_name 为库模式，user_constraints.table_name 为表名
+
+## 查询主键
+```
+SELECT column_name FROM user_cons_columns WHERE constraint_name = (select sysobjects.name from
+sysobjects ,all_objects,user_constraints where object_type='SCH' and object_name = '%s'
+and sysobjects.schid = all_objects.object_id  and type$='TABOBJ' and sysobjects.subtype$='CONS'
+and user_constraints.table_name= '%s' AND user_constraints.constraint_type ='P'
+and user_constraints.constraint_name = sysobjects.name)
+```
+## 查询所有表
+```
+select sysobjects.name from sysobjects,all_objects where object_type='SCH' and object_name = '%s'
+and sysobjects.schid = all_objects.object_id and sysobjects.type$='SCHOBJ' and sysobjects.subtype$='UTAB'
+```
+
+
 # Sqlserver2k
 > o.name 指定表名,sqlserver默认的schema是dbo
 
