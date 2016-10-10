@@ -319,7 +319,19 @@ dpkg -L python #查询python安装路径
 ```bash
 whereis python #查询python安装路径
 ```
-
+## 内核版本查询
+```
+uname -r
+或
+uname -a
+```
+## 查询发行版本
+```
+# ubuntu
+cat /etc/issue
+# redhat 
+cat /etc/redhat-release
+```
 
 ## 其他
 ```bash
