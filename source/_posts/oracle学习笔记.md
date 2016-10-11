@@ -217,3 +217,80 @@ from dba_data_files t;
 # STATUS：STALE为已经提交到数据中，空白为正在使用该文件
 select * from v$logfile;
 ```
+##### 恢复刚才受影响的一条数据
+```
+# 假设先执行如下sql，删除一条记录
+delete from emp where ename='FORD';
+# 以 SYS 登录数据库，或者对 flashback_transaction_query 有查询权限的用户登录，该表属于 SYS
+# undo_sql 即为恢复的sql，将其复制到到命令窗口执行即可
+select t.start_timestamp,
+       t.commit_timestamp,
+       t.logon_user,
+       t.operation,
+       t.table_name,
+       t.table_owner,
+       t.undo_sql
+from flashback_transaction_query where t.table_name = 'EMP';
+```
+##### 恢复被大量受影响的记录
+```
+# 假设 emp 表有100万条记录，执行了 update emp set job = 'analyst';
+# 如果按照恢复一条数据的做法，那么将需要操作100万次，这个方法至少手工是不可能的
+# 我们假设 update emp set job = 'analyst'; 是在10分钟之前执行的
+# 先查看当前系统时间,假设当前时间为 2016-10-11 14：20：00
+select sysdate from dual;
+
+# 查询 emp 表 10分钟前的数据,如果时间确定正确，查询到的数据就应该是执行 update emp set job = 'analyst'; 的数据
+select * from emp as of timestamp to_timestamp('2016-10-11 14：10：00','yyyy-mm-dd hh24:mi:ss');
+
+# 使用数据库的闪回功能恢复数据
+# 更改 emp 表的行好
+alter table emp enable row movement；
+# 恢复到10分钟前的数据
+flasshback table emp to timestamp to_timestamp('2016-10-11 14：10：00','yyyy-mm-dd hh24:mi:ss');
+```
+##### 恢复删除的表
+```
+# 删除 emp表（可以是非空表）
+drop table emp;
+
+# 查看回收站中是否存在 emp表，一般情况下可以省略此操作
+select * from user_recyclebin order by droptime desc;
+或
+select * froom recyclebin order by droptime desc;
+
+# 使用闪回恢复表
+flashback table emp to before drop;
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
