@@ -9,7 +9,7 @@ tags: [Hexo,Github-pages]
 
 # 配置环境变量（ubuntu）
 
-在环境配置文件中添加（形如）：
+在环境配置文件末尾添加（形如）：
 ```bash
 Nodejs="/path/to/nodejs"   
 PATH="$Nodejs/bin/:...."  
