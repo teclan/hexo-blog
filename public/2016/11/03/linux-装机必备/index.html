@@ -11,13 +11,22 @@
     
 
     
-    <meta property="og:type" content="article">
+    <meta name="description" content="系统设置打不开重装桌面1apt-get install ubuntu-desktop
+右键打开终端安装 nautilus-open-terminal1apt-get install nautilus-open-terminal
+使用 oh-my-zsh12345apt-get install zshsh -c &amp;quot;$(curl -fsSL https://raw.github.com/ro">
+<meta property="og:type" content="article">
 <meta property="og:title" content="linux 装机必备">
 <meta property="og:url" content="https://teclan.github.io/2016/11/03/linux-装机必备/index.html">
 <meta property="og:site_name" content="Teclan">
-<meta property="og:updated_time" content="2016-11-03T12:39:28.633Z">
+<meta property="og:description" content="系统设置打不开重装桌面1apt-get install ubuntu-desktop
+右键打开终端安装 nautilus-open-terminal1apt-get install nautilus-open-terminal
+使用 oh-my-zsh12345apt-get install zshsh -c &amp;quot;$(curl -fsSL https://raw.github.com/ro">
+<meta property="og:updated_time" content="2016-11-04T05:53:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux 装机必备">
+<meta name="twitter:description" content="系统设置打不开重装桌面1apt-get install ubuntu-desktop
+右键打开终端安装 nautilus-open-terminal1apt-get install nautilus-open-terminal
+使用 oh-my-zsh12345apt-get install zshsh -c &amp;quot;$(curl -fsSL https://raw.github.com/ro">
 <meta name="twitter:creator" content="@tbj621">
 
     
@@ -86,15 +95,29 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#系统设置打不开"><span class="toc-number">1.</span> <span class="toc-text">系统设置打不开</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#右键打开终端"><span class="toc-number">2.</span> <span class="toc-text">右键打开终端</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用-oh-my-zsh"><span class="toc-number">3.</span> <span class="toc-text">使用 oh-my-zsh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更新软件源"><span class="toc-number">4.</span> <span class="toc-text">更新软件源</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#备份系统系带软件源"><span class="toc-number">4.1.</span> <span class="toc-text">备份系统系带软件源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用新的软件源，例如-ustc-源，打开-sources-list，替换成以下内容"><span class="toc-number">4.2.</span> <span class="toc-text">使用新的软件源，例如 ustc 源，打开 sources.list，替换成以下内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#刷新列表"><span class="toc-number">4.3.</span> <span class="toc-text">刷新列表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#推荐"><span class="toc-number">5.</span> <span class="toc-text">推荐</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#tilda"><span class="toc-number">5.1.</span> <span class="toc-text">tilda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#htop"><span class="toc-number">5.2.</span> <span class="toc-text">htop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全屏启动终端"><span class="toc-number">5.3.</span> <span class="toc-text">全屏启动终端</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		  
+		<h1 id="系统设置打不开"><a href="#系统设置打不开" class="headerlink" title="系统设置打不开"></a>系统设置打不开</h1><p>重装桌面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install ubuntu-desktop</div></pre></td></tr></table></figure></p>
+<h1 id="右键打开终端"><a href="#右键打开终端" class="headerlink" title="右键打开终端"></a>右键打开终端</h1><p>安装 nautilus-open-terminal<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install nautilus-open-terminal</div></pre></td></tr></table></figure></p>
+<h1 id="使用-oh-my-zsh"><a href="#使用-oh-my-zsh" class="headerlink" title="使用 oh-my-zsh"></a>使用 oh-my-zsh</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">apt-get install zsh</div><div class="line">sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</div><div class="line"></div><div class="line"># oh-my-zsh 替换 系统 bash</div><div class="line">chsh -s /bin/zsh</div></pre></td></tr></table></figure>
+<h1 id="更新软件源"><a href="#更新软件源" class="headerlink" title="更新软件源"></a>更新软件源</h1><h2 id="备份系统系带软件源"><a href="#备份系统系带软件源" class="headerlink" title="备份系统系带软件源"></a>备份系统系带软件源</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp /etc/apt/sources.list /etc/apt/sources.list_backup</div></pre></td></tr></table></figure>
+<h2 id="使用新的软件源，例如-ustc-源，打开-sources-list，替换成以下内容"><a href="#使用新的软件源，例如-ustc-源，打开-sources-list，替换成以下内容" class="headerlink" title="使用新的软件源，例如 ustc 源，打开 sources.list，替换成以下内容"></a>使用新的软件源，例如 ustc 源，打开 sources.list，替换成以下内容</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">deb http://mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse</div><div class="line">deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</div><div class="line">deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</div><div class="line">deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse</div><div class="line">deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</div><div class="line">deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse</div><div class="line">deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</div><div class="line">deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</div><div class="line">deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse</div><div class="line">deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</div></pre></td></tr></table></figure>
+<h2 id="刷新列表"><a href="#刷新列表" class="headerlink" title="刷新列表"></a>刷新列表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">apt-get update</div><div class="line"># 如果出现以下异常，先将 apt 进程杀掉，重新执行 apt-get update 即可</div><div class="line">   E: Could not get lock /var/lib/apt/lists/lock - open (11 Resource temporarily unavailable)</div><div class="line">   E: Unable to lock the list directory</div></pre></td></tr></table></figure>
+<h1 id="推荐"><a href="#推荐" class="headerlink" title="推荐"></a>推荐</h1><h2 id="tilda"><a href="#tilda" class="headerlink" title="tilda"></a>tilda</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install tilda</div></pre></td></tr></table></figure>
+<h2 id="htop"><a href="#htop" class="headerlink" title="htop"></a>htop</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install htop</div></pre></td></tr></table></figure>
+<h2 id="全屏启动终端"><a href="#全屏启动终端" class="headerlink" title="全屏启动终端"></a>全屏启动终端</h2><p>system–&gt;All Setings–&gt;Keyboard–&gt;Shortcuts–&gt;Custom Shortcuts,<br>点击加号（+）添加快捷键名称和对应的命令，完成后选择应用。双击新建快捷键右侧设置快捷键</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/linux，oh-my-zsh/">linux，oh-my-zsh</a>
+  </div>
 
 </div>
 
@@ -156,7 +179,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#系统设置打不开"><span class="toc-number">1.</span> <span class="toc-text">系统设置打不开</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#右键打开终端"><span class="toc-number">2.</span> <span class="toc-text">右键打开终端</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用-oh-my-zsh"><span class="toc-number">3.</span> <span class="toc-text">使用 oh-my-zsh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更新软件源"><span class="toc-number">4.</span> <span class="toc-text">更新软件源</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#备份系统系带软件源"><span class="toc-number">4.1.</span> <span class="toc-text">备份系统系带软件源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用新的软件源，例如-ustc-源，打开-sources-list，替换成以下内容"><span class="toc-number">4.2.</span> <span class="toc-text">使用新的软件源，例如 ustc 源，打开 sources.list，替换成以下内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#刷新列表"><span class="toc-number">4.3.</span> <span class="toc-text">刷新列表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#推荐"><span class="toc-number">5.</span> <span class="toc-text">推荐</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#tilda"><span class="toc-number">5.1.</span> <span class="toc-text">tilda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#htop"><span class="toc-number">5.2.</span> <span class="toc-text">htop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全屏启动终端"><span class="toc-number">5.3.</span> <span class="toc-text">全屏启动终端</span></a></li></ol></li></ol>
  
   </div>
 
