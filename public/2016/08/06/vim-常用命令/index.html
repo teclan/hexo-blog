@@ -1,0 +1,501 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>vim 常用命令 | Teclan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Teclan">
+    
+
+    
+    <meta name="description" content="光标移动 h或左箭头：左移一个字符 j或下箭头：下移一个字符 k或上箭头：上移一个字符 l或右箭头：右移一个字符
+ 可以使用组合键，如需要向下移动20行，输入：20j
+ [Ctrl]+[b] 或 PageUp  :上翻一页 [Ctrl]+[f] 或 PageDown:上翻一页 [Ctrl]+[u]:上翻半页 [Ctrl]+[d]:下翻半页
+ 0 或 [Home] : 移动至行首 $ 或 [End]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim 常用命令">
+<meta property="og:url" content="https://teclan.github.io/2016/08/06/vim-常用命令/index.html">
+<meta property="og:site_name" content="Teclan">
+<meta property="og:description" content="光标移动 h或左箭头：左移一个字符 j或下箭头：下移一个字符 k或上箭头：上移一个字符 l或右箭头：右移一个字符
+ 可以使用组合键，如需要向下移动20行，输入：20j
+ [Ctrl]+[b] 或 PageUp  :上翻一页 [Ctrl]+[f] 或 PageDown:上翻一页 [Ctrl]+[u]:上翻半页 [Ctrl]+[d]:下翻半页
+ 0 或 [Home] : 移动至行首 $ 或 [End]">
+<meta property="og:updated_time" content="2016-10-30T07:43:33.770Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vim 常用命令">
+<meta name="twitter:description" content="光标移动 h或左箭头：左移一个字符 j或下箭头：下移一个字符 k或上箭头：上移一个字符 l或右箭头：右移一个字符
+ 可以使用组合键，如需要向下移动20行，输入：20j
+ [Ctrl]+[b] 或 PageUp  :上翻一页 [Ctrl]+[f] 或 PageDown:上翻一页 [Ctrl]+[u]:上翻半页 [Ctrl]+[d]:下翻半页
+ 0 或 [Home] : 移动至行首 $ 或 [End]">
+<meta name="twitter:creator" content="@tbj621">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Teclan">Teclan</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:teclan.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/08/06/vim-常用命令/" title="vim 常用命令" itemprop="url">vim 常用命令</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Teclan" target="_blank" itemprop="author">Teclan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-06T03:06:59.000Z" itemprop="datePublished"> Published 2016-08-06</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#光标移动"><span class="toc-number">1.</span> <span class="toc-text">光标移动</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查找替换"><span class="toc-number">2.</span> <span class="toc-text">查找替换</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#删除，复制，粘贴"><span class="toc-number">3.</span> <span class="toc-text">删除，复制，粘贴</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#插入"><span class="toc-number">4.</span> <span class="toc-text">插入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#保存，离开"><span class="toc-number">5.</span> <span class="toc-text">保存，离开</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#行号"><span class="toc-number">6.</span> <span class="toc-text">行号</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h1><p> h或左箭头：左移一个字符<br> j或下箭头：下移一个字符<br> k或上箭头：上移一个字符<br> l或右箭头：右移一个字符</p>
+<p> 可以使用组合键，如需要向下移动20行，输入：20j</p>
+<p> [Ctrl]+[b] 或 PageUp  :上翻一页<br> [Ctrl]+[f] 或 PageDown:上翻一页<br> [Ctrl]+[u]:上翻半页<br> [Ctrl]+[d]:下翻半页</p>
+<p> 0 或 [Home] : 移动至行首<br> $ 或 [End]  ：移动至行末</p>
+<p> G ： 移动至文件最后一行<br> gg： 移动至文件第一行<br> nG： 移动至文件第n行<br> n[Enter]：从所在行开始向下移动 n 行</p>
+<h1 id="查找替换"><a href="#查找替换" class="headerlink" title="查找替换"></a>查找替换</h1><p> /word :向下查找 word 字符，按 n 向下寻找匹配字符<br> ？word：向上查找 word 字符，按 n 向上寻找匹配字符<br> n ： 重复查找操作<br> N ： 与 n 反向</p>
+<p> :n1,n2s/word1/word2/g : n1和n2是数字，表示在第n1行到第n2行之间查找word1,并且将其替换成word2<br> :1,$s/word1/word2/g  :替换所有的word1为word2<br> :1,$s/word1/word2/gc  :替换所有的word1为word2,但是每一个匹配项替换前需要用户确认</p>
+<h1 id="删除，复制，粘贴"><a href="#删除，复制，粘贴" class="headerlink" title="删除，复制，粘贴"></a>删除，复制，粘贴</h1><p> x 或 [Delete] ：向后删除一个字符<br> X 或 [Backspace] ： 向前删除一个字符<br> nx ： 连续向后删除 n 个字符<br> dd ： 删除当前行<br> ndd ： 删除当前行开始向下 n 行</p>
+<p> dG : 删除当前行到最后一行的数据<br> d1G :删除当前行到第一行的数据</p>
+<p> yy : 复制当前行<br> nyy ： 复制当前行开始向下 n 行<br> yG : 复制当前行到最后一行的数据<br> y1G : 复制当前行到第一行的数据</p>
+<p> p(小写)：在当前行下一行粘贴<br> P（大写）：在当前行上一行粘贴</p>
+<p> u ： 撤销<br> [Ctrl]+r : 重做，反撤销</p>
+<h1 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h1><p> i： 在光标所在位置开始插入<br> I ： 在当前行行首插入<br> a ： 在光标所在字符下一个位置开始插入<br> A ： 在当前行行末插入<br> o ： 在当前行下一行开始插入<br> O ： 在当前行上一行开始插入<br> r ： 替换光标所在字符一次<br> R ： 持续替换光标所在字符，按[Esc]停止</p>
+<h1 id="保存，离开"><a href="#保存，离开" class="headerlink" title="保存，离开"></a>保存，离开</h1><p> ：w ： 写入硬盘<br> ：w! ： 强制写入硬盘<br> ：q ： 离开vim<br> ：q!： 修改过文件，但是不想保存，强制离开<br> ：wq ：保存后离开<br> ：wq! ：强制保存后离开<br> ：n1,n2 w [filename] :将第n1行到n2行的数据保存到文件filename</p>
+<h1 id="行号"><a href="#行号" class="headerlink" title="行号"></a>行号</h1><p>：set nu ：显示行号<br>：set nonu ：取消行号显示</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/vim/">vim</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+2112069" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/08/29/mysql-中文乱码问题/" title="mysql 中文乱码问题">
+  <strong>上一篇：</strong><br/>
+  <span>
+  mysql 中文乱码问题</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/07/15/常见数据库操作SQL/"  title="常见数据库操作SQL">
+ <strong>下一篇：</strong><br/> 
+ <span>常见数据库操作SQL
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#光标移动"><span class="toc-number">1.</span> <span class="toc-text">光标移动</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查找替换"><span class="toc-number">2.</span> <span class="toc-text">查找替换</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#删除，复制，粘贴"><span class="toc-number">3.</span> <span class="toc-text">删除，复制，粘贴</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#插入"><span class="toc-number">4.</span> <span class="toc-text">插入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#保存，离开"><span class="toc-number">5.</span> <span class="toc-text">保存，离开</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#行号"><span class="toc-number">6.</span> <span class="toc-text">行号</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="teclan" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/ubuntu/" title="ubuntu">ubuntu<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ssh/" title="ssh">ssh<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Github-pages/" title="Github-pages">Github-pages<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/kingbase/" title="kingbase">kingbase<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/maven/" title="maven">maven<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Maven/" title="Maven">Maven<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/oracle/" title="oracle">oracle<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/打包/" title="打包">打包<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/eclipse/" title="eclipse">eclipse<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Oracle/" title="Oracle">Oracle<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/达梦/" title="达梦">达梦<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sqlserver2k/" title="sqlserver2k">sqlserver2k<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sqlserver2k/" title="sqlserver2k+">sqlserver2k+<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB2/" title="DB2">DB2<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 天雨虽宽，不润无根之草；佛法虽广，不渡无缘至人。 <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/teclan" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/tbj621" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/tbj621" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/teclan" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:tbj621k@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Teclan">Teclan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
