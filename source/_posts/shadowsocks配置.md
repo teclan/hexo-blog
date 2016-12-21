@@ -52,11 +52,7 @@ $ pip install shadowsocks
 ```
 在 config.json 所在目录执行以下命令启动 shadowsocks
 ```
-ssserver
-```
-如何不想终端有信息输出，执行
-```
-nohup ssserver > log &
+sslocal -c config.json
 ```
 
 
