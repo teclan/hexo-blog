@@ -3,8 +3,7 @@ title: JavaWeb部署
 date: 2016-12-01 14:31:29
 tags: [tomcat,jetty,sparkjava]
 ---
-
-> [示例项目](https://github.com/teclan/teclan-web)
+[示例项目](https://github.com/teclan/teclan-web)
 
 ## JavaWeb 后台（JAVA程序）部署
 

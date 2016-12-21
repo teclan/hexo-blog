@@ -1,7 +1,7 @@
 ---
 title: linux 装机必备
 date: 2016-11-03 20:39:28
-tags: [linux，oh-my-zsh]
+tags: [linux,oh-my-zsh]
 ---
 # 系统设置打不开
 重装桌面
