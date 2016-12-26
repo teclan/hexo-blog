@@ -23,7 +23,7 @@ Git安装1sudo apt-get install git
 
 Git安装1sudo apt-get install git
 生成key设置你的邮箱信息123$ ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;# Creates a new ssh key, using the provided email as a labelGenera">
-<meta property="og:updated_time" content="2016-12-21T01:58:20.611Z">
+<meta property="og:updated_time" content="2016-12-22T02:52:09.501Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu java 开发环境搭建">
 <meta name="twitter:description" content="ubuntu16.04 使用 apt 代替 apt-get
@@ -52,7 +52,7 @@ Git安装1sudo apt-get install git
 				<h1 class="site-name"><a href="/" title="Teclan">Teclan</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -66,7 +66,7 @@ Git安装1sudo apt-get install git
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:teclan.github.io">
 					</form>
 					
@@ -89,14 +89,14 @@ Git安装1sudo apt-get install git
 		<a href="/about" title="Teclan" target="_blank" itemprop="author">Teclan</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-12T02:20:13.000Z" itemprop="datePublished"> Published 2016-07-12</time>
+    <time datetime="2016-07-12T02:20:13.000Z" itemprop="datePublished"> 发表于 2016-07-12</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git"><span class="toc-number">1.</span> <span class="toc-text">Git</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成key"><span class="toc-number">1.2.</span> <span class="toc-text">生成key</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ssh"><span class="toc-number">2.</span> <span class="toc-text">ssh</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-1"><span class="toc-number">2.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#确认sshserver是否启动了"><span class="toc-number">2.2.</span> <span class="toc-text">确认sshserver是否启动了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置使登录时间更短"><span class="toc-number">2.3.</span> <span class="toc-text">配置使登录时间更短</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#maven"><span class="toc-number">3.</span> <span class="toc-text">maven</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载"><span class="toc-number">3.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">3.2.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jdk"><span class="toc-number">4.</span> <span class="toc-text">jdk</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载-1"><span class="toc-number">4.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-1"><span class="toc-number">4.2.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#eclipse"><span class="toc-number">5.</span> <span class="toc-text">eclipse</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载-2"><span class="toc-number">5.1.</span> <span class="toc-text">下载</span></a></li></ol></li></ol>
 		
@@ -200,22 +200,22 @@ Git安装1sudo apt-get install git
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git"><span class="toc-number">1.</span> <span class="toc-text">Git</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成key"><span class="toc-number">1.2.</span> <span class="toc-text">生成key</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ssh"><span class="toc-number">2.</span> <span class="toc-text">ssh</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-1"><span class="toc-number">2.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#确认sshserver是否启动了"><span class="toc-number">2.2.</span> <span class="toc-text">确认sshserver是否启动了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置使登录时间更短"><span class="toc-number">2.3.</span> <span class="toc-text">配置使登录时间更短</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#maven"><span class="toc-number">3.</span> <span class="toc-text">maven</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载"><span class="toc-number">3.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">3.2.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jdk"><span class="toc-number">4.</span> <span class="toc-text">jdk</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载-1"><span class="toc-number">4.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-1"><span class="toc-number">4.2.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#eclipse"><span class="toc-number">5.</span> <span class="toc-text">eclipse</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载-2"><span class="toc-number">5.1.</span> <span class="toc-text">下载</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="teclan" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -227,16 +227,8 @@ Git安装1sudo apt-get install git
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Github-pages/" title="Github-pages">Github-pages<sup>2</sup></a></li>
-			
 		
 			
 				<li><a href="/tags/ubuntu/" title="ubuntu">ubuntu<sup>2</sup></a></li>
@@ -244,6 +236,14 @@ Git安装1sudo apt-get install git
 		
 			
 				<li><a href="/tags/linux/" title="linux">linux<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Github-pages/" title="Github-pages">Github-pages<sup>2</sup></a></li>
 			
 		
 			
@@ -255,15 +255,7 @@ Git安装1sudo apt-get install git
 			
 		
 			
-				<li><a href="/tags/eclipse/" title="eclipse">eclipse<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/sparkjava/" title="sparkjava">sparkjava<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Maven/" title="Maven">Maven<sup>1</sup></a></li>
+				<li><a href="/tags/编码/" title="编码">编码<sup>1</sup></a></li>
 			
 		
 			
@@ -271,15 +263,11 @@ Git安装1sudo apt-get install git
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/oh-my-zsh/" title="oh-my-zsh">oh-my-zsh<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/maven/" title="maven">maven<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/tomcat/" title="tomcat">tomcat<sup>1</sup></a></li>
 			
 		
 			
@@ -287,7 +275,27 @@ Git安装1sudo apt-get install git
 			
 		
 			
-				<li><a href="/tags/编码/" title="编码">编码<sup>1</sup></a></li>
+				<li><a href="/tags/sparkjava/" title="sparkjava">sparkjava<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AngularJS/" title="AngularJS">AngularJS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/oh-my-zsh/" title="oh-my-zsh">oh-my-zsh<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Jekyll/" title="Jekyll">Jekyll<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/eclipse/" title="eclipse">eclipse<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 			
@@ -300,14 +308,6 @@ Git安装1sudo apt-get install git
 		
 			
 				<li><a href="/tags/ssh/" title="ssh">ssh<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/tomcat/" title="tomcat">tomcat<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -502,7 +502,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
