@@ -310,8 +310,9 @@ AND (CONVERT(bit, (x.status & 0x800) / 0x800) = 1);
 ```
 ## 查询表字段类型
 ```
-select o.name as table_name, c.name as column_name, t.name as data_type
-from syscolumns c, sysobjects o, systypes t where o.name = '%s' and c.id = o.id and c.xtype = t.xtype；
+select users.name as schema_name,o.name as table_name, c.name as column_name, t.name as data_type 
+from syscolumns c, sysobjects o, systypes t,dbo.sysusers users where o.name = '%s' and users.name = '%s' and users.uid =o.uid and c.id = o.id and c.xtype = t.xtype;
+# 其中，第一个参数为表名，第二个参数为模式名（用户名）
 ```
 ## 获取所有表
 ```
@@ -575,6 +576,13 @@ join sys.foreign_key_columns fkCols  on (fk.object_id = fkCols.constraint_object
 join sys.columns SubCol ON (oSub.object_id = SubCol.object_id and fkCols.parent_column_id = SubCol.column_id)
 join sys.columns MainCol on (oMain.object_id = MainCol.object_id and fkCols.referenced_column_id = MainCol.column_id)
 where oSub.name='%s';
+```
+## 查询字段属性
+```
+select  schemas.name as schema_name ,o.name as table_name, c.name as column_name, t.name as data_type 
+from syscolumns c, sysobjects o, systypes t,sys.tables tables,sys.schemas  schemas where o.name = '%s' 
+and schemas.name='%s' and c.id = o.id and c.xtype = t.xtype and tables.object_id = c.id and tables.schema_id =schemas.schema_id
+# 其中第一个参数为表名，第二个参数为模式名
 ```
 # DB2
 ## Jdbc驱动
