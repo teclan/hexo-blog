@@ -1,7 +1,7 @@
 ---
 title: oracle 数据库常见异常与配置
 date: 2017-06-20 19:37:14
-tags: [oracle]
+tags: [oracle,编码,乱码]
 ---
 
 ### 连接被拒绝
@@ -31,11 +31,10 @@ alter system set processes = 300 scope = spfile;
 ORA-01653: 表 SYSTEM.XNV73 无法通过 8 (在表空间 SYSTEM 中) 扩展
 ORA-06512: 在 line 24
 01653. 00000 -  "unable to extend table %s.%s by %s in tablespace %s"
-*Cause:    Failed to allocate an extent of the required number of blocks for
+Cause:    Failed to allocate an extent of the required number of blocks for
            a table segment in the tablespace indicated.
-*Action:   Use ALTER TABLESPACE ADD DATAFILE statement to add one or more
+Action:   Use ALTER TABLESPACE ADD DATAFILE statement to add one or more
            files to the tablespace indicated.
-
 
 解决办法：
 1、查看指定模式的磁盘存储路径
@@ -46,16 +45,31 @@ SELECT FILE_NAME, BYTES FROM DBA_DATA_FILES WHERE TABLESPACE_NAME = 'SYSTEM'; # 
 ```
 ALTER TABLESPACE SYSTEM ADD DATAFILE '/u01/app/oracle/oradata/XE/system01.dbf' SIZE 500M;
 ```
+### 数据库中文乱码
 
-
+通过ORACLE的SQL PLUS修改服务器端字符集，在SQL*PLUS 中，以DBA登录
+conn 用户名 as sysdba
+然后执行以下命令
+```
+shutdown immediate; (把database停了)
+startup mount; (把database重开去可更改情況)
+alter system enable restricted session;
+alter system set job_queue_processes=0;
+alter system set aq_tm_processes=0;
+alter database open;
+alter database character set utf8; # 执行失败时，尝试强制转化
+# alter database character set internal_use utf8;(强制转换编码格式，有可能会导致数据库中的中文变成乱码)
+shutdown immediate;
+startup;
+```
 
 ### 创建用户与授权
 
-1、创建用户
+#### 1、创建用户
 ```
  create user 用户名 identified by 口令;
  ```
- 2、权限与角色
+#### 2、权限与角色
  > oracle为兼容以前版本，提供三种标准角色（role）:connect/resource和dba。
  三种标准角色：
       1). connect role(连接角色)
@@ -68,20 +82,20 @@ ALTER TABLESPACE SYSTEM ADD DATAFILE '/u01/app/oracle/oradata/XE/system01.dbf' S
       dba role拥有所有的系统权限，包括无限制的空间限额和给其他用户授予各种权限的能力。system由dba用户拥有。
       此外，用户还可以在oracle创建自己的role。用户创建的role可以由表或系统权限或两者的组合构成。为了创建role，用户必须具有create role系统权限。
 
-2.1、授权
+##### 2.1、授权
 ```
  grant connect, resource to 用户名;
 ```
-2.2、撤销权限
+##### 2.2、撤销权限
 
 ```
  revoke connect, resource from 用户名;
 ```
-2.3、创建角色
+##### 2.3、创建角色
 ```
  create role 角色名;
  ```
-2.4、授权角色
+##### 2.4、授权角色
 ```
 grant select on 表名 to 角色名;
 ```
@@ -89,7 +103,7 @@ grant select on 表名 to 角色名;
 ```
  grant select on 表名 to testRole; # 现在，拥有testRole角色的所有用户都具有对 [表名] 的select查询权限
  ```
-2.5、删除角色
+##### 2.5、删除角色
 ```
  drop role 角色名;
  ```

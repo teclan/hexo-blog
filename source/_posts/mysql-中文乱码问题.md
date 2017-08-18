@@ -1,7 +1,7 @@
 ---
 title: mysql 中文乱码问题
 date: 2016-08-29 16:36:46
-tags: [mysql,编码]
+tags: [mysql,编码,乱码]
 ---
 
 
@@ -23,8 +23,8 @@ URL ： jdbc:mysql://%s:%d/%s?useUnicode=true&characterEncoding=UTF-8
 ```
 ERROR 1366 (HY000): Incorrect string value:xxx
 ```
-一般这种情况出现在直接使用控制台操作数据库，一般的方式是重建数据库或建表时指定编码，当然，如果能在安装数据库的时候就把相关参数
-配置正确，那是最好的
+一般这种情况出现在直接使用控制台操作数据库，一般的方式是重建数据库或建表时指定编码，当然，
+如果能在安装数据库的时候就把相关参数配置正确，那是最好的
 #### 重建数据库
 ```
 create database db_name;//此时使用的是默认编码，插入中文会乱码
