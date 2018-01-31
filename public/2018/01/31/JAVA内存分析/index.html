@@ -1,0 +1,611 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>JAVA内存分析 | Teclan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Teclan">
+    
+
+    
+    <meta name="description" content="jconsolejconsole是一个用java自带的GUI程序，用来监控VM，并可监控远程的VM，非常易用，而且功能非常强。使用方法：命令行进入JAVA_HOME\bin\，执行 jconsole.exe,在打开的界面选择需要的进程即可。需要注意，如果电脑上存在多个JVM，需要在我们程序引用的JVM里面执行jconsole.exe（或者与其位数、版本一致）方可正常使用，否则出现认证异常或版本不一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA内存分析">
+<meta property="og:url" content="https://teclan.github.io/2018/01/31/JAVA内存分析/index.html">
+<meta property="og:site_name" content="Teclan">
+<meta property="og:description" content="jconsolejconsole是一个用java自带的GUI程序，用来监控VM，并可监控远程的VM，非常易用，而且功能非常强。使用方法：命令行进入JAVA_HOME\bin\，执行 jconsole.exe,在打开的界面选择需要的进程即可。需要注意，如果电脑上存在多个JVM，需要在我们程序引用的JVM里面执行jconsole.exe（或者与其位数、版本一致）方可正常使用，否则出现认证异常或版本不一">
+<meta property="og:updated_time" content="2018-01-31T12:47:08.440Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JAVA内存分析">
+<meta name="twitter:description" content="jconsolejconsole是一个用java自带的GUI程序，用来监控VM，并可监控远程的VM，非常易用，而且功能非常强。使用方法：命令行进入JAVA_HOME\bin\，执行 jconsole.exe,在打开的界面选择需要的进程即可。需要注意，如果电脑上存在多个JVM，需要在我们程序引用的JVM里面执行jconsole.exe（或者与其位数、版本一致）方可正常使用，否则出现认证异常或版本不一">
+<meta name="twitter:creator" content="@tbj621">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Teclan">Teclan</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:teclan.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody">
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/01/31/JAVA内存分析/" title="JAVA内存分析" itemprop="url">JAVA内存分析</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Teclan" target="_blank" itemprop="author">Teclan</a>
+		
+  <p class="article-time">
+    <time datetime="2018-01-31T12:44:38.000Z" itemprop="datePublished"> 發表於 2018-01-31</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#jconsole"><span class="toc-number">1.</span> <span class="toc-text">jconsole</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jmap"><span class="toc-number">2.</span> <span class="toc-text">jmap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-VisualVM"><span class="toc-number">3.</span> <span class="toc-text">Java VisualVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jstack"><span class="toc-number">4.</span> <span class="toc-text">jstack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jstat"><span class="toc-number">5.</span> <span class="toc-text">jstat</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="jconsole"><a href="#jconsole" class="headerlink" title="jconsole"></a>jconsole</h2><p>jconsole是一个用java自带的GUI程序，用来监控VM，并可监控远程的VM，非常易用，而且功能非常强。<br>使用方法：<br>命令行进入JAVA_HOME\bin\，执行 jconsole.exe,在打开的界面选择需要的进程即可。需要注意，如果电脑上存在多个JVM，需要在我们程序引用的JVM里面执行jconsole.exe（或者与其位数、版本一致）方可正常使用，否则出现认证异常或版本不一致的异常。<br>或者在命令输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">jconsole [PID]</div><div class="line"></div><div class="line"># 例如</div><div class="line"></div><div class="line">jconsole 2548</div></pre></td></tr></table></figure></p>
+<p>直接进入对应程序的监控页面。</p>
+<h2 id="jmap"><a href="#jmap" class="headerlink" title="jmap"></a>jmap</h2><p>其中jmap是java自带的工具,要注意的是在使用CMS GC 情况下，jmap -heap的执行有可能会导致JAVA 进程挂起,使用方法：命令行进入JAVA_HOME\bin\，执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"># 查看整个JVM内存状态</div><div class="line">jmap -heap [pid]</div><div class="line"></div><div class="line"># 查看JVM堆中对象详细占用情况</div><div class="line">jmap -histo [pid]</div><div class="line"></div><div class="line"># 导出整个JVM 中内存信息</div><div class="line">jmap  -dump:format=b,file=path\to\your\file.bin  [PID]</div><div class="line">或</div><div class="line">jmap  -dump:live,format=b,file=path\to\your\file.bin  [PID] 指定是存活的对象</div><div class="line"></div><div class="line">#例如</div><div class="line">jmap  -dump:format=b,file=G:\内存分析\heap-19031.bin  2548</div><div class="line"></div><div class="line">导出的 heap 文件可使用 jhat 分析，命令如下</div><div class="line">jhat -J-Xmx512m &lt;heap dump file&gt;</div><div class="line"></div><div class="line">jmap -histo pid&gt;a.log可以将其保存到文本中去</div></pre></td></tr></table></figure>
+<h2 id="Java-VisualVM"><a href="#Java-VisualVM" class="headerlink" title="Java VisualVM"></a>Java VisualVM</h2><p>对于使用命令行远程监控jvm 太麻烦 。 在jdk1.6 中 Oracle 提供了一个新的可视化的。 JVM 监控工具 Java VisualVM 。jvisualvm.exe 在JDK 的 bin 目录下。启动 Java VisualVM 后可以看到窗口左侧 “应用程序 ”栏中有“ 本地 ”、“远程 ” 、“快照 ”三个项目。<br>  “本地 ”下显示的是在 localhost 运行的 Java 程序的资源占用情况，如果本地有 Java 程序在运行的话启动 Java VisualVM 即可看到相应的程序名，点击程序名打开相应的资源监控菜单，以图形的形式列出程序所占用的 CPU 、 Heap 、 PermGen 、类、线程的 统计信息。<br>  “远程” 项下列出的远程主机上的 Java 程序的资源占用情况，但需要在远程主机上运行 jstatd 守护程序</p>
+<h2 id="jstack"><a href="#jstack" class="headerlink" title="jstack"></a>jstack</h2><p>  jstack 是sun JDK 自带的工具，通过该工具可以看到JVM 中线程的运行状况，包括锁等待，线程是否在运行<br>执行 jstack [pid] ,线程的所有堆栈信息<br>“http-8080-10” daemon prio=10 tid=x0a949bb60 nid=0x884  waiting for monitor entry […]</p>
+<p>“http-8080-10” 这个线程处于等待状态。 waiting for monitor entry 如果在连续几次输出线程堆栈信息都存在于同一个或多个线程上时，则说明系统中有锁竞争激烈，死锁，或锁饿死的想象。</p>
+<p>“http-8080-11” daemon prio=10 tix=xxx nid=xxx in object.wait() […]<br> java.lang.Thread.State:waiting (on object monitor)<br>该表示http-8080-11的线程处于对象的Wait 上，等待其他线程的唤醒，这也是线程池的常见用法。</p>
+<p>“Low Memory Detector”daemon prio=10 tix=xx nid=xxx runnable […] java.lang.Thread.State:runnable<br>表示“Low Memory Detector” 的线程处于Runable状态，等待获取ＣＰＵ的使用权.</p>
+<h2 id="jstat"><a href="#jstat" class="headerlink" title="jstat"></a>jstat</h2><p>stat是JDK自带的一个轻量级小工具。全称“Java Virtual Machine statistics monitoring tool”，它位于java的bin目录下，主要利用JVM内建的指令对Java应用程序的资源和性能进行实时的命令行的监控，包括了对Heap size和垃圾回收状况的监控。可见，Jstat是轻量级的、专门针对JVM的工具，非常适用。</p>
+<p>jstat工具特别强大，有众多的可选项，详细查看堆内各个部分的使用量，以及加载类的数量。使用时，需加上查看进程的进程id，和所选参数。以下详细介绍各个参数的意义。</p>
+<p>jstat -class pid:显示加载class的数量，及所占空间等信息。</p>
+<p>jstat -compiler pid:显示VM实时编译的数量等信息。</p>
+<p>jstat -gc pid:可以显示gc的信息，查看gc的次数，及时间。其中最后五项，分别是young gc的次数，young gc的时间，full gc的次数，full gc的时间，gc的总时间。</p>
+<p>jstat -gccapacity:可以显示，VM内存中三代（young,old,perm）对象的使用和占用大小，如：PGCMN显示的是最小perm的内存使用量，PGCMX显示的是perm的内存最大使用量，PGC是当前新生成的perm内存占用量，PC是但前perm内存占用量。其他的可以根据这个类推， OC是old内纯的占用量。</p>
+<p>jstat -gcnew pid:new对象的信息。</p>
+<p>jstat -gcnewcapacity pid:new对象的信息及其占用量。</p>
+<p>jstat -gcold pid:old对象的信息。</p>
+<p>jstat -gcoldcapacity pid:old对象的信息及其占用量。</p>
+<p>jstat -gcpermcapacity pid: perm对象的信息及其占用量。</p>
+<p>jstat -util pid:统计gc信息统计。</p>
+<p>jstat -printcompilation pid:当前VM执行的信息。</p>
+<p>除了以上一个参数外，还可以同时加上 两个数字，如：jstat -printcompilation 3024 250 6是每250毫秒打印一次，一共打印6次，还可以加上-h3每三行显示一下标题。</p>
+
+	</div>
+  
+	<!-- css -->
+	<style type="text/css">
+	    .center {
+	        text-align: center;
+	    }
+	    .hidden {
+	        display: none;
+	    }
+		.donate_bar a.btn_donate{
+			display: inline-block;
+			width: 82px;
+			height: 82px;
+			background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+			_background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+			<!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+			     因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+				 为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+				 嵌入其它博客时不一定要它们。 -->
+			-webkit-transition: background 0s;
+			-moz-transition: background 0s;
+			-o-transition: background 0s;
+			-ms-transition: background 0s;
+			transition: background 0s;
+			<!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+		}
+		.donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+		.donate_bar .donate_txt {
+			display: block;
+			color: #9d9d9d;
+			font: 14px/2 "Microsoft Yahei";
+		}
+		.bold{ font-weight: bold; }
+	</style>
+	<!-- /css -->
+    <!-- Donate Module -->
+    <div id="donate_module">
+	<!-- btn_donate & tips -->
+	<div id="donate_board" class="donate_bar center">
+	    <br>
+	    ------------------------------------------------------------------------------------------------------------------------------
+	    <br>
+		<a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+		<span class="donate_txt">
+			打赏我的人，运气都不会太差~
+		</span>
+
+
+	</div>
+	<!-- /btn_donate & tips -->
+	<!-- donate guide -->
+
+	<div id="donate_guide" class="donate_bar center hidden">
+        <br>
+	    ------------------------------------------------------------------------------------------------------------------------------
+	    <br>
+	    
+	    <div width="100%" align="center"><div name="dashmain" id="dash-main-id-87895f" class="dash-main-3 87895f-0.99"></div></div>
+		<script type="text/javascript" charset="utf-8" src="http://www.dashangcloud.com/static/ds.js"></script>
+		
+		<a href="http://p1.bpimg.com/1949/0a9e758968dd101e.jpg" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+			<img src="http://p1.bpimg.com/1949/0a9e758968dd101e.jpg" title="微信打赏 Donate" height="190px" width="auto"/>
+		</a>
+
+        &nbsp;&nbsp;
+		<a href="http://p1.bpimg.com/1949/8fbf9e3c2e42f6a4.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+			<img src="http://p1.bpimg.com/1949/8fbf9e3c2e42f6a4.jpg" title="支付宝打赏 Donate" height="190px" width="auto"/>
+		</a>
+		<span class="donate_txt">
+			打赏我的人，运气都不会太差~
+		</span>
+	</div>
+	<!-- /donate guide -->
+	<!-- donate script -->
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function() {
+			$('#donate_board').addClass('hidden');
+	    $('#donate_guide').removeClass('hidden');
+		}
+		function donate_on_web(){
+			$('#donate').submit();
+        }
+		var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+		}
+	</script>
+	<!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JAVA/">JAVA</a><a href="/tags/内存分析/">内存分析</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+2112069" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2018/01/31/sonarqube代码质量审查/" title="sonarqube代码质量审查">
+  <strong>上一篇：</strong><br/>
+  <span>
+  sonarqube代码质量审查</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/08/18/oracle重做日志分析/"  title="oracle重做日志分析">
+ <strong>下一篇：</strong><br/> 
+ <span>oracle重做日志分析
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2018/01/31/JAVA内存分析/" data-title="JAVA内存分析" data-url="https://teclan.github.io/2018/01/31/JAVA内存分析/"></div>
+</section>
+
+
+</div>
+
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#jconsole"><span class="toc-number">1.</span> <span class="toc-text">jconsole</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jmap"><span class="toc-number">2.</span> <span class="toc-text">jmap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-VisualVM"><span class="toc-number">3.</span> <span class="toc-text">Java VisualVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jstack"><span class="toc-number">4.</span> <span class="toc-text">jstack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jstat"><span class="toc-number">5.</span> <span class="toc-text">jstat</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="teclan" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/oracle/" title="oracle">oracle<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB2/" title="DB2">DB2<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Github-pages/" title="Github-pages">Github-pages<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ubuntu/" title="ubuntu">ubuntu<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/乱码/" title="乱码">乱码<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shadowsocks/" title="shadowsocks">shadowsocks<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/kingbase/" title="kingbase">kingbase<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Jekyll/" title="Jekyll">Jekyll<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/eclipse/" title="eclipse">eclipse<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JAVA/" title="JAVA">JAVA<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Maven/" title="Maven">Maven<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/打包/" title="打包">打包<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ruby/" title="ruby">ruby<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/maven/" title="maven">maven<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AngularJS/" title="AngularJS">AngularJS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/oh-my-zsh/" title="oh-my-zsh">oh-my-zsh<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/内存分析/" title="内存分析">内存分析<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 天雨虽宽，不润无根之草；佛法虽广，不渡无缘至人。 <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/teclan" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/tbj621" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/tbj621" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/teclan" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:tbj621k@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Teclan">Teclan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"teclan"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
