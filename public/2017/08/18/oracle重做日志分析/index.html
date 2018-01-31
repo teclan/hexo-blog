@@ -52,7 +52,7 @@
 				<h1 class="site-name"><a href="/" title="Teclan">Teclan</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -66,7 +66,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:teclan.github.io">
 					</form>
 					
@@ -89,14 +89,14 @@
 		<a href="/about" title="Teclan" target="_blank" itemprop="author">Teclan</a>
 		
   <p class="article-time">
-    <time datetime="2017-08-18T14:00:04.000Z" itemprop="datePublished"> 發表於 2017-08-18</time>
+    <time datetime="2017-08-18T14:00:04.000Z" itemprop="datePublished"> Published 2017-08-18</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#日志文件的块大小查询"><span class="toc-number">1.</span> <span class="toc-text">日志文件的块大小查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#清理脏块"><span class="toc-number">2.</span> <span class="toc-text">清理脏块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查询日志分组信息"><span class="toc-number">3.</span> <span class="toc-text">查询日志分组信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查询当前日志分组"><span class="toc-number">4.</span> <span class="toc-text">查询当前日志分组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建日志分析存储过程以及查询常见信息"><span class="toc-number">5.</span> <span class="toc-text">创建日志分析存储过程以及查询常见信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试记录"><span class="toc-number">6.</span> <span class="toc-text">测试记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#只用-ID-作为条件且只更新-LOB-字段（SQL-REDO-和-SQL-UNDO-中缺失-条件）"><span class="toc-number">6.1.</span> <span class="toc-text">只用 ID 作为条件且只更新 LOB 字段（SQL_REDO 和 SQL_UNDO 中缺失 条件）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#无主键表"><span class="toc-number">6.1.1.</span> <span class="toc-text">无主键表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#有主键表"><span class="toc-number">6.1.2.</span> <span class="toc-text">有主键表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新BLOB字段内容-BLOB字段无法通过-SQL-UNDO-还原"><span class="toc-number">6.1.3.</span> <span class="toc-text">更新BLOB字段内容(BLOB字段无法通过 SQL_UNDO 还原)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sqldeveloper-和-jdbc-执行含-LOB-字段（超过4K）的-insert-对比"><span class="toc-number">6.1.4.</span> <span class="toc-text">sqldeveloper 和 jdbc 执行含 LOB 字段（超过4K）的 insert 对比</span></a></li></ol></li></ol></li></ol>
 		
@@ -305,22 +305,22 @@
 
 </div>
 
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#日志文件的块大小查询"><span class="toc-number">1.</span> <span class="toc-text">日志文件的块大小查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#清理脏块"><span class="toc-number">2.</span> <span class="toc-text">清理脏块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查询日志分组信息"><span class="toc-number">3.</span> <span class="toc-text">查询日志分组信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查询当前日志分组"><span class="toc-number">4.</span> <span class="toc-text">查询当前日志分组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建日志分析存储过程以及查询常见信息"><span class="toc-number">5.</span> <span class="toc-text">创建日志分析存储过程以及查询常见信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试记录"><span class="toc-number">6.</span> <span class="toc-text">测试记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#只用-ID-作为条件且只更新-LOB-字段（SQL-REDO-和-SQL-UNDO-中缺失-条件）"><span class="toc-number">6.1.</span> <span class="toc-text">只用 ID 作为条件且只更新 LOB 字段（SQL_REDO 和 SQL_UNDO 中缺失 条件）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#无主键表"><span class="toc-number">6.1.1.</span> <span class="toc-text">无主键表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#有主键表"><span class="toc-number">6.1.2.</span> <span class="toc-text">有主键表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新BLOB字段内容-BLOB字段无法通过-SQL-UNDO-还原"><span class="toc-number">6.1.3.</span> <span class="toc-text">更新BLOB字段内容(BLOB字段无法通过 SQL_UNDO 还原)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sqldeveloper-和-jdbc-执行含-LOB-字段（超过4K）的-insert-对比"><span class="toc-number">6.1.4.</span> <span class="toc-text">sqldeveloper 和 jdbc 执行含 LOB 字段（超过4K）的 insert 对比</span></a></li></ol></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="teclan" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -332,7 +332,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -340,11 +340,7 @@
 			
 		
 			
-				<li><a href="/tags/linux/" title="linux">linux<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/DB2/" title="DB2">DB2<sup>2</sup></a></li>
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
 			
 		
 			
@@ -356,7 +352,11 @@
 			
 		
 			
-				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+				<li><a href="/tags/linux/" title="linux">linux<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB2/" title="DB2">DB2<sup>2</sup></a></li>
 			
 		
 			
@@ -368,15 +368,15 @@
 			
 		
 			
-				<li><a href="/tags/shadowsocks/" title="shadowsocks">shadowsocks<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/kingbase/" title="kingbase">kingbase<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Jekyll/" title="Jekyll">Jekyll<sup>1</sup></a></li>
+				<li><a href="/tags/shadowsocks/" title="shadowsocks">shadowsocks<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/oh-my-zsh/" title="oh-my-zsh">oh-my-zsh<sup>1</sup></a></li>
 			
 		
 			
@@ -404,15 +404,15 @@
 			
 		
 			
+				<li><a href="/tags/内存分析/" title="内存分析">内存分析<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/AngularJS/" title="AngularJS">AngularJS<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/oh-my-zsh/" title="oh-my-zsh">oh-my-zsh<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/内存分析/" title="内存分析">内存分析<sup>1</sup></a></li>
+				<li><a href="/tags/tomcat/" title="tomcat">tomcat<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -607,7 +607,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

@@ -11,13 +11,22 @@
     
 
     
-    <meta property="og:type" content="article">
+    <meta name="description" content="安装 sonarqube进入官网下载最新的安装包，解压后选择与系统匹配的启动文件启动即可，在浏览器中输入 http://localhot:9000 进入sonarqube服务页面
+配置服务端口和URL配置进入sonarqube 的 conf 目录，打开 sonar.properties，如下配置：
+123456sonar.search.javaAdditionalOpts=-Des.network">
+<meta property="og:type" content="article">
 <meta property="og:title" content="sonarqube代码质量审查">
 <meta property="og:url" content="https://teclan.github.io/2018/01/31/sonarqube代码质量审查/index.html">
 <meta property="og:site_name" content="Teclan">
-<meta property="og:updated_time" content="2018-01-31T12:46:25.967Z">
+<meta property="og:description" content="安装 sonarqube进入官网下载最新的安装包，解压后选择与系统匹配的启动文件启动即可，在浏览器中输入 http://localhot:9000 进入sonarqube服务页面
+配置服务端口和URL配置进入sonarqube 的 conf 目录，打开 sonar.properties，如下配置：
+123456sonar.search.javaAdditionalOpts=-Des.network">
+<meta property="og:updated_time" content="2018-01-31T12:51:04.333Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sonarqube代码质量审查">
+<meta name="twitter:description" content="安装 sonarqube进入官网下载最新的安装包，解压后选择与系统匹配的启动文件启动即可，在浏览器中输入 http://localhot:9000 进入sonarqube服务页面
+配置服务端口和URL配置进入sonarqube 的 conf 目录，打开 sonar.properties，如下配置：
+123456sonar.search.javaAdditionalOpts=-Des.network">
 <meta name="twitter:creator" content="@tbj621">
 
     
@@ -40,7 +49,7 @@
 				<h1 class="site-name"><a href="/" title="Teclan">Teclan</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -54,7 +63,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:teclan.github.io">
 					</form>
 					
@@ -77,20 +86,31 @@
 		<a href="/about" title="Teclan" target="_blank" itemprop="author">Teclan</a>
 		
   <p class="article-time">
-    <time datetime="2018-01-31T12:46:25.000Z" itemprop="datePublished"> 發表於 2018-01-31</time>
+    <time datetime="2018-01-31T12:46:25.000Z" itemprop="datePublished"> Published 2018-01-31</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-sonarqube"><span class="toc-number">1.</span> <span class="toc-text">安装 sonarqube</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#服务端口和URL配置"><span class="toc-number">2.1.</span> <span class="toc-text">服务端口和URL配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sonarqube-数据库配置"><span class="toc-number">2.2.</span> <span class="toc-text">sonarqube 数据库配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#elasticsearch-配置"><span class="toc-number">2.3.</span> <span class="toc-text">elasticsearch 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven-配置"><span class="toc-number">2.4.</span> <span class="toc-text">Maven 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插件安装"><span class="toc-number">2.5.</span> <span class="toc-text">插件安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码分析"><span class="toc-number">3.</span> <span class="toc-text">代码分析</span></a></li></ol>
 		
 		</div>
 		
-		
+		<h2 id="安装-sonarqube"><a href="#安装-sonarqube" class="headerlink" title="安装 sonarqube"></a>安装 sonarqube</h2><p>进入<a href="https://www.sonarqube.org" target="_blank" rel="external">官网</a>下载最新的安装包，解压后选择与系统匹配的启动文件启动即可，在浏览器中输入 <a href="http://localhot:9000" target="_blank" rel="external">http://localhot:9000</a> 进入sonarqube服务页面</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="服务端口和URL配置"><a href="#服务端口和URL配置" class="headerlink" title="服务端口和URL配置"></a>服务端口和URL配置</h3><p>进入sonarqube 的 conf 目录，打开 sonar.properties，如下配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sonar.search.javaAdditionalOpts=-Des.network.host=127.0.0.1</div><div class="line">sonar.web.host=0.0.0.0  </div><div class="line"># 服务地址 localhot:9000/sonarqube,可选默认http://localhot:9000</div><div class="line">sonar.web.context=/sonarqube  </div><div class="line"># 服务端口</div><div class="line">sonar.web.port=9000</div></pre></td></tr></table></figure>
+<h3 id="sonarqube-数据库配置"><a href="#sonarqube-数据库配置" class="headerlink" title="sonarqube 数据库配置"></a>sonarqube 数据库配置</h3><p>sonarqube支持h2，Oracle,Mysql，PostgreSql，SQLServer数据库，以PostgreSql配置为例，先创建一个空数据库，例如名为<code>sonar</code>,配置如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonar</div><div class="line">sonar.jdbc.username=postgres</div><div class="line">sonar.jdbc.password=123456</div><div class="line">sonar.sorceEncoding=UTF-8</div><div class="line"></div><div class="line"># 以下是 sonarqube 服务的登录配置</div><div class="line">sonar.login=admin</div><div class="line">sonar.password=admin</div></pre></td></tr></table></figure>
+<h3 id="elasticsearch-配置"><a href="#elasticsearch-配置" class="headerlink" title="elasticsearch 配置"></a>elasticsearch 配置</h3><p>elasticsearch 配置可保持默认，若有改动需要在 sonar.properties 做相应修改，详情参见sonar.properties注释</p>
+<h3 id="Maven-配置"><a href="#Maven-配置" class="headerlink" title="Maven 配置"></a>Maven 配置</h3><p>配置 Maven 的配置文件 setting.xml,内容如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;settings&gt;</div><div class="line">    &lt;pluginGroups&gt;</div><div class="line">        &lt;pluginGroup&gt;org.sonarsource.scanner.maven&lt;/pluginGroup&gt;</div><div class="line">    &lt;/pluginGroups&gt;</div><div class="line">    &lt;profiles&gt;</div><div class="line">        &lt;profile&gt;</div><div class="line">            &lt;id&gt;sonar&lt;/id&gt;</div><div class="line">            &lt;activation&gt;</div><div class="line">                &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;</div><div class="line">            &lt;/activation&gt;</div><div class="line">            &lt;properties&gt;</div><div class="line">                &lt;! sonarqube服务地，参考端口和URL配置，两处要一致 --&gt;</div><div class="line">                &lt;sonar.host.url&gt;</div><div class="line">                   http://localhot:9000/sonarqube</div><div class="line">                &lt;/sonar.host.url&gt;</div><div class="line">            &lt;/properties&gt;</div><div class="line">        &lt;/profile&gt;</div><div class="line">     &lt;/profiles&gt;</div><div class="line">&lt;/settings&gt;</div></pre></td></tr></table></figure>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><p>sonarqube 的功能扩展需要插件支持，插件可在<br><a href="https://docs.sonarqube.org/display/PLUG/Plugin+Library" target="_blank" rel="external">https://docs.sonarqube.org/display/PLUG/Plugin+Library</a><br>查看下载，下载后的插件（.jar）放至sonarqube目录的 extensions\plugins 目录下，重启 sonarqube 即可。</p>
+<h2 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h2><p>在项目根目录下执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn sonar:sonar</div></pre></td></tr></table></figure></p>
+<p>等待执行完成，打开 <a href="http://localhot:9000/sonarqube" target="_blank" rel="external">http://localhot:9000/sonarqube</a>，登录之后即可查看代码分析结果</p>
+
 	</div>
   
 	<!-- css -->
@@ -190,6 +210,11 @@
 <div class="article-catetags">
 
 
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/sonarqube/">sonarqube</a><a href="/tags/代码质量/">代码质量</a>
+  </div>
+
 </div>
 
 
@@ -250,22 +275,22 @@
 
 </div>
 
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-sonarqube"><span class="toc-number">1.</span> <span class="toc-text">安装 sonarqube</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#服务端口和URL配置"><span class="toc-number">2.1.</span> <span class="toc-text">服务端口和URL配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sonarqube-数据库配置"><span class="toc-number">2.2.</span> <span class="toc-text">sonarqube 数据库配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#elasticsearch-配置"><span class="toc-number">2.3.</span> <span class="toc-text">elasticsearch 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven-配置"><span class="toc-number">2.4.</span> <span class="toc-text">Maven 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插件安装"><span class="toc-number">2.5.</span> <span class="toc-text">插件安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码分析"><span class="toc-number">3.</span> <span class="toc-text">代码分析</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="teclan" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -277,7 +302,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -285,11 +310,7 @@
 			
 		
 			
-				<li><a href="/tags/linux/" title="linux">linux<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/DB2/" title="DB2">DB2<sup>2</sup></a></li>
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
 			
 		
 			
@@ -301,7 +322,11 @@
 			
 		
 			
-				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+				<li><a href="/tags/linux/" title="linux">linux<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB2/" title="DB2">DB2<sup>2</sup></a></li>
 			
 		
 			
@@ -313,15 +338,15 @@
 			
 		
 			
-				<li><a href="/tags/shadowsocks/" title="shadowsocks">shadowsocks<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/kingbase/" title="kingbase">kingbase<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Jekyll/" title="Jekyll">Jekyll<sup>1</sup></a></li>
+				<li><a href="/tags/shadowsocks/" title="shadowsocks">shadowsocks<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/oh-my-zsh/" title="oh-my-zsh">oh-my-zsh<sup>1</sup></a></li>
 			
 		
 			
@@ -349,15 +374,15 @@
 			
 		
 			
+				<li><a href="/tags/内存分析/" title="内存分析">内存分析<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/AngularJS/" title="AngularJS">AngularJS<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/oh-my-zsh/" title="oh-my-zsh">oh-my-zsh<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/内存分析/" title="内存分析">内存分析<sup>1</sup></a></li>
+				<li><a href="/tags/tomcat/" title="tomcat">tomcat<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -552,7 +577,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
